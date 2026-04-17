@@ -4,25 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
   <title>Executive Poker Experience | Google Cloud SMB Demand Gen</title>
-  <meta name="description" content="Strategic poker engagement for Global Google Cloud Demand Generation - SMB. Premium, interactive, app‑like.">
-  <!-- Google Fonts -->
+  <meta name="description" content="Strategic poker engagement for Global Google Cloud Demand Generation - SMB.">
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet">
-  <!-- React & ReactDOM -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- React -->
   <script crossorigin src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-  <!-- Babel -->
   <script src="https://unpkg.com/@babel/standalone@7.23.5/babel.min.js"></script>
   <style>
     /* =========================================================
-       BLOCK 1 START - RESET, CLOUD BACKGROUND, GLOBAL TOKENS
+       BLOCK 1 START - RESET, CLOUDS, GLOBAL
     ========================================================== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --gc-blue: #1A73E8;
       --gc-red: #E94235;
@@ -31,6 +27,7 @@
       --navy-deep: #0B1424;
       --navy-card: rgba(18, 28, 45, 0.75);
       --white: #FFFFFF;
+      --gold: #d4af37;
       --border-light: rgba(255,255,255,0.08);
       --shadow-lg: 0 25px 40px -12px rgba(0,0,0,0.4);
       --transition: all 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
@@ -44,7 +41,6 @@
       overflow-x: hidden;
       min-height: 100vh;
     }
-    /* clamp fluid spacing */
     h1 { font-size: clamp(2.2rem, 8vw, 4.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
     h2 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 700; letter-spacing: -0.02em; }
     h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 600; }
@@ -55,13 +51,30 @@
       margin: 0 auto;
       padding: 0 clamp(1rem, 5vw, 2.5rem);
     }
-    /* full‑bleed sections */
     section {
       position: relative;
       padding: clamp(3rem, 8vh, 5rem) 0;
       width: 100%;
     }
-    /* ----- 3D CLOUD BACKGROUND (CSS only) ----- */
+    /* ICON STYLES */
+    .icon-gold {
+      color: var(--gold);
+      margin-right: 10px;
+      font-size: 1.2em;
+      vertical-align: middle;
+      transition: transform 0.3s ease;
+    }
+    .icon-white {
+      color: var(--white);
+      margin-right: 10px;
+      font-size: 1.2em;
+      vertical-align: middle;
+    }
+    .event-meta span:hover .icon-gold {
+      transform: scale(1.15);
+    }
+
+    /* ----- REAL CLOUDS (improved gradients) ----- */
     #background-wrap {
       position: fixed;
       inset: 0;
@@ -70,15 +83,14 @@
       overflow: hidden;
     }
     .cloud {
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
+      background: linear-gradient(145deg, rgba(255,255,255,0.18) 0%, rgba(220,240,255,0.12) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: 200px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 30px 50px -10px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.1);
       height: 120px;
       width: 350px;
       position: relative;
-      border: 1px solid rgba(255,255,255,0.05);
     }
     .cloud:after, .cloud:before {
       content: '';
@@ -87,7 +99,6 @@
       backdrop-filter: inherit;
       border-radius: 200px;
       box-shadow: inherit;
-      border: inherit;
     }
     .cloud:after {
       width: 100px; height: 100px; left: 50px; top: -50px;
@@ -99,13 +110,13 @@
       position: absolute;
       animation: animateCloud linear infinite;
     }
-    .x1 { animation-duration: 45s; transform: scale(0.7); top: 5%; }
-    .x2 { animation-duration: 28s; transform: scale(0.45); top: 20%; }
-    .x3 { animation-duration: 38s; transform: scale(0.6); top: 55%; }
-    .x4 { animation-duration: 22s; transform: scale(0.35); top: 75%; }
-    .x5 { animation-duration: 50s; transform: scale(0.8); top: 40%; }
+    .x1 { animation-duration: 55s; transform: scale(0.7); top: 5%; }
+    .x2 { animation-duration: 35s; transform: scale(0.45); top: 20%; }
+    .x3 { animation-duration: 45s; transform: scale(0.6); top: 55%; }
+    .x4 { animation-duration: 28s; transform: scale(0.35); top: 75%; }
+    .x5 { animation-duration: 60s; transform: scale(0.8); top: 40%; }
     @keyframes animateCloud {
-      0% { left: -400px; }
+      0% { left: -500px; }
       100% { left: 110%; }
     }
     /* BLOCK 1 END */
@@ -153,7 +164,7 @@
     .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.5); }
     /* BLOCK 2 END */
 
-    /* BLOCK 3 START - HEADER / NAV */
+    /* BLOCK 3 START - HEADER */
     .navbar {
       display: flex;
       align-items: center;
@@ -172,7 +183,7 @@
     }
     /* BLOCK 3 END */
 
-    /* BLOCK 4 START - OPTION CARDS, CHECKBOX ADDONS */
+    /* BLOCK 4 START - OPTION CARDS */
     .cards-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -202,20 +213,16 @@
     .checkbox-item input {
       width: 1.2rem; height: 1.2rem; accent-color: var(--gc-blue);
     }
-    /* BLOCK 4 END */
-
-    /* BLOCK 5 START - MOBILE EDGE TO EDGE */
-    @media (max-width: 768px) {
-      .cards-grid { grid-template-columns: 1fr; }
-      .container { padding: 0 clamp(1rem, 4vw, 1.5rem); }
-      section { padding: clamp(2.5rem, 6vh, 4rem) 0; }
-      .flow-steps { grid-template-columns: 1fr; }
-      .pro-grid { grid-template-columns: 1fr; }
+    /* event meta row */
+    .event-meta {
+      display: flex;
+      gap: 25px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      font-weight: 500;
+      margin-top: 20px;
     }
-    @media (max-width: 480px) {
-      .hero-meta { flex-direction: column; gap: 0.5rem; }
-    }
-    /* flow, pro, gallery, etc reused from earlier */
+    /* flow, pro, gallery */
     .flow-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
     .step { padding: 1.2rem 0.5rem; background: rgba(255,255,255,0.02); border-radius: 24px; }
     .pro-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
@@ -224,11 +231,16 @@
     .pro-img img { width: 100%; height: 100%; object-fit: cover; }
     .gallery-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
     .gallery-item img { width: 100%; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
-    /* BLOCK 5 END */
+    @media (max-width: 768px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .flow-steps { grid-template-columns: 1fr; }
+      .pro-grid { grid-template-columns: 1fr; }
+    }
+    /* BLOCK 4 END */
   </style>
 </head>
 <body>
-  <!-- CSS Cloud Background -->
+  <!-- REAL CLOUD BACKGROUND -->
   <div id="background-wrap">
     <div class="x1"><div class="cloud"></div></div>
     <div class="x2"><div class="cloud"></div></div>
@@ -240,7 +252,7 @@
   <div id="root"></div>
 
   <script type="text/babel">
-    // BLOCK 6 START: REACT HOOKS & UTILS
+    // BLOCK 5 START: HOOKS & UTILS
     const { useState, useEffect, useRef } = React;
 
     const useReveal = (threshold = 0.15) => {
@@ -274,9 +286,9 @@
     };
 
     const scrollToSection = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    // BLOCK 6 END
+    // BLOCK 5 END
 
-    // BLOCK 7 START: COMPONENTS
+    // BLOCK 6 START: COMPONENTS
     const GoogleCloudLogo = () => (
       <img 
         src="https://assets.cdn.filesafe.space/E2BEbKIK8SvsJICq4vXY/media/69e23d12c56ad27908639c01.svg" 
@@ -291,8 +303,8 @@
       return <div ref={ref} className={`reveal ${className} ${visible ? 'visible' : ''}`}>{children}</div>;
     };
 
-    // Option Card with add-ons for Venetian
-    const OptionCard = ({ title, subtitle, basePrice, lineItems, accentColor, isVenetian, onSelect }) => {
+    // Option Card with add-ons (Font Awesome icons)
+    const OptionCard = ({ title, subtitle, basePrice, accentColor, isVenetian, onSelect }) => {
       const [ref, visible] = useReveal();
       const [addons, setAddons] = useState({ sprinter: false, waitress: false, bar: false });
       
@@ -324,15 +336,15 @@
             <div className="addon-group">
               <label className="checkbox-item">
                 <input type="checkbox" name="sprinter" checked={addons.sprinter} onChange={handleCheck} /> 
-                <span>🚐 Round trip Sprinter — $875</span>
+                <i className="fa-solid fa-van-shuttle icon-gold"></i> Round Trip Sprinter — $875
               </label>
               <label className="checkbox-item">
                 <input type="checkbox" name="waitress" checked={addons.waitress} onChange={handleCheck} /> 
-                <span>🍸 Private Waitress — $550</span>
+                <i className="fa-solid fa-bell-concierge icon-gold"></i> Private Waitress — $550
               </label>
               <label className="checkbox-item">
                 <input type="checkbox" name="bar" checked={addons.bar} onChange={handleCheck} /> 
-                <span>🥂 Open Bar — $700</span>
+                <i className="fa-solid fa-champagne-glasses icon-gold"></i> Open Bar — $700
               </label>
             </div>
           )}
@@ -348,16 +360,16 @@
     // Hand Analysis with programmer analogy
     const HandAnalysis = () => (
       <div className="glass-panel" style={{padding: 'clamp(1.8rem, 5vw, 3rem)'}}>
-        <h3>💡 What is Hand Analysis?</h3>
+        <h3><i className="fa-solid fa-code icon-gold"></i> What is Hand Analysis?</h3>
         <p style={{fontSize:'1.1rem', marginTop:'1rem'}}>
           Imagine a senior engineer reviewing your code in real time — pointing out optimizations, flagging edge cases, and suggesting cleaner logic. 
           Our pros do exactly that at the table: they break down every decision, reveal missed opportunities, and sharpen your strategic thinking.
         </p>
       </div>
     );
-    // BLOCK 7 END
+    // BLOCK 6 END
 
-    // BLOCK 8 START: MAIN APP
+    // BLOCK 7 START: MAIN APP
     const App = () => {
       const [selectedExperience, setSelectedExperience] = useState(null);
 
@@ -372,7 +384,6 @@
         return `mailto:book@pokertraininglasvegas.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       };
 
-      // Pros data
       const pros = [
         { name: 'Kenna James', role: '20+ yrs teaching', stats: ['260+ cashes', '22 wins', '$4.2M+'], img: 'https://www.gamblinginsider.com/img/news/kenna-james-ape-in-poker-partnership.jpg' },
         { name: 'Jeff Madsen', role: '10+ yrs teaching', stats: ['4 WSOP bracelets', 'WSOP POY', '$7M+'], img: 'https://www.seminolehardrockpokeropen.com/wp-content/uploads/2022/01/2022-LHPO-Jeff-Madsen.jpg' },
@@ -381,7 +392,6 @@
 
       return (
         <div>
-          {/* Header */}
           <header style={{borderBottom:'1px solid rgba(255,255,255,0.05)'}}>
             <div className="container">
               <div className="navbar">
@@ -389,7 +399,7 @@
                   <GoogleCloudLogo />
                   <span style={{fontWeight:500, opacity:0.8}}>Demand Gen · SMB</span>
                 </div>
-                <div className="group-badge">7 execs · Apr 21 · 3:30–6:00 PM</div>
+                <div className="group-badge"><i className="fa-solid fa-user-group icon-white"></i> 7 execs · Apr 21</div>
               </div>
             </div>
           </header>
@@ -402,12 +412,14 @@
                   <div className="badge" style={{marginBottom:'1rem'}}>Global Google Cloud · SMB Demand Generation</div>
                   <h1>Executive Poker<br/><span style={{background:'linear-gradient(145deg, #6ab0fe, #fff)', WebkitBackgroundClip:'text', color:'transparent'}}>Engagement.</span></h1>
                   <p style={{fontSize:'clamp(1.1rem, 3vw, 1.5rem)', maxWidth:'700px', opacity:0.9}}>
-                    High‑engagement, strategy‑driven experience for teams building pipeline.
+                    High‑engagement, strategy‑driven experience for teams building pipelines.
                   </p>
-                  <div className="hero-meta" style={{display:'flex', gap:'2rem', margin:'1.5rem 0'}}>
-                    <span>📅 April 21</span><span>⏰ 3:30–6:00 PM</span><span>👥 7 Executives</span>
+                  <div className="event-meta">
+                    <span><i className="fa-solid fa-calendar-days icon-gold"></i> April 21</span>
+                    <span><i className="fa-solid fa-clock icon-gold"></i> 3:30–6:00 PM</span>
+                    <span><i className="fa-solid fa-user-group icon-gold"></i> 7 Executives</span>
                   </div>
-                  <div style={{display:'flex', gap:'1rem', flexWrap:'wrap'}}>
+                  <div style={{display:'flex', gap:'1rem', flexWrap:'wrap', marginTop:'2rem'}}>
                     <button className="btn btn-primary" onClick={() => scrollToSection('options')}>Explore options</button>
                     <button className="btn btn-outline" onClick={() => scrollToSection('investment')}>Review investment</button>
                   </div>
@@ -435,8 +447,7 @@
                   <OptionCard 
                     title="Suite Experience"
                     subtitle="Private & seamless"
-                    basePrice={3500}  // Kenna = $3,500, all inclusive
-                    lineItems={[]}
+                    basePrice={3500}
                     accentColor="#1A73E8"
                     isVenetian={false}
                     onSelect={handleSelect}
@@ -444,14 +455,13 @@
                   <OptionCard 
                     title="Venetian Experience"
                     subtitle="VIP immersive"
-                    basePrice={6500}  // Poker room + Kenna etc.
-                    lineItems={[]}
+                    basePrice={6500}
                     accentColor="#E94235"
                     isVenetian={true}
                     onSelect={handleSelect}
                   />
                 </div>
-                <p style={{marginTop:'1rem', opacity:0.7}}>*Private studio available for Venetian training if preferred.</p>
+                <p style={{marginTop:'1rem', opacity:0.7}}><i className="fa-solid fa-building icon-gold"></i> Private studio available for Venetian training if preferred.</p>
               </div>
             </section>
 
@@ -460,7 +470,7 @@
               <div className="container"><RevealBlock><HandAnalysis /></RevealBlock></div>
             </section>
 
-            {/* Experience Flow */}
+            {/* Flow */}
             <section>
               <div className="container">
                 <RevealBlock>
@@ -499,7 +509,7 @@
               </div>
             </section>
 
-            {/* Gallery - added extra landscape from Cahill proposal */}
+            {/* Gallery */}
             <section>
               <div className="container">
                 <RevealBlock>
@@ -512,7 +522,7 @@
               </div>
             </section>
 
-            {/* Investment summary */}
+            {/* Investment */}
             <section id="investment">
               <div className="container">
                 <RevealBlock>
@@ -527,7 +537,7 @@
               </div>
             </section>
 
-            {/* CTA / Next Steps */}
+            {/* CTA */}
             <section id="cta-section">
               <div className="container">
                 <RevealBlock>
@@ -536,7 +546,7 @@
                     {selectedExperience ? (
                       <>
                         <p style={{margin:'1.5rem 0'}}>Selected: <strong>{selectedExperience.type} Experience</strong> — ${selectedExperience.total.toLocaleString()}</p>
-                        <a href={generateMailto()} className="btn btn-primary" style={{margin:'1rem'}}>📧 Reserve Experience (Email)</a>
+                        <a href={generateMailto()} className="btn btn-primary" style={{margin:'1rem'}}><i className="fa-regular fa-envelope"></i> Reserve Experience (Email)</a>
                       </>
                     ) : (
                       <p style={{margin:'1.5rem 0'}}>Select an experience above to proceed.</p>
@@ -557,7 +567,7 @@
         </div>
       );
     };
-    // BLOCK 8 END
+    // BLOCK 7 END
 
     ReactDOM.render(<App />, document.getElementById('root'));
   </script>
