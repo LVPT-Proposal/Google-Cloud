@@ -159,6 +159,7 @@
       align-items: center;
       justify-content: space-between;
       padding: clamp(0.8rem, 3vw, 1.5rem) 0;
+      flex-wrap: wrap;
     }
     .logo-area { display: flex; align-items: center; gap: 12px; }
     .gc-logo-svg { height: 32px; width: auto; }
@@ -169,6 +170,24 @@
       border-radius: 40px;
       font-weight: 600;
       border: 1px solid rgba(255,255,255,0.1);
+      white-space: nowrap;
+    }
+    /* mobile badge reposition */
+    .mobile-badge-wrap {
+      display: none;
+    }
+    @media (max-width: 600px) {
+      .navbar .group-badge {
+        display: none;
+      }
+      .mobile-badge-wrap {
+        display: block;
+        margin-top: 0.5rem;
+      }
+      .mobile-badge-wrap .group-badge {
+        display: inline-block;
+        white-space: nowrap;
+      }
     }
     /* BLOCK 3 END */
 
@@ -202,6 +221,22 @@
     .checkbox-item input {
       width: 1.2rem; height: 1.2rem; accent-color: var(--gc-blue);
     }
+    .bullet-list {
+      list-style: none;
+      margin: 1.2rem 0;
+    }
+    .bullet-list li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+    .bullet-list li i {
+      color: var(--gold);
+      font-size: 0.9rem;
+      width: 1.2rem;
+      text-align: center;
+    }
     .event-meta {
       display: flex;
       gap: 25px;
@@ -210,10 +245,21 @@
       font-weight: 500;
       margin-top: 20px;
     }
-    .flow-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
-    .step { padding: 1.2rem 0.5rem; background: rgba(255,255,255,0.02); border-radius: 24px; }
+    .flow-steps { 
+      display: grid; 
+      grid-template-columns: repeat(4,1fr); 
+      gap: 1rem; 
+      text-align: center;
+    }
+    .step { 
+      padding: 1.5rem 0.5rem; 
+      background: rgba(255,255,255,0.02); 
+      border-radius: 24px; 
+    }
+    .step h4 { margin: 0.8rem 0 0.4rem; }
+    .step p { font-size: 0.9rem; opacity: 0.8; }
     .pro-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
-    .pro-card { background: rgba(255,255,255,0.03); border-radius: 28px; padding: 2rem 1rem; }
+    .pro-card { background: rgba(255,255,255,0.03); border-radius: 28px; padding: 2rem 1rem; text-align: center; }
     .pro-img { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden; border: 2px solid var(--gc-blue); }
     .pro-img img { width: 100%; height: 100%; object-fit: cover; }
     .gallery-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
@@ -290,7 +336,7 @@
       return <div ref={ref} className={`reveal ${className} ${visible ? 'visible' : ''}`}>{children}</div>;
     };
 
-    // Option Card with updated descriptions
+    // Option Card with bullet points and updated text
     const OptionCard = ({ title, subtitle, basePrice, accentColor, isVenetian, onSelect }) => {
       const [ref, visible] = useReveal();
       const [addons, setAddons] = useState({ sprinter: false, waitress: false, bar: false });
@@ -315,13 +361,22 @@
         <div ref={ref} className={`option-card reveal ${visible ? 'visible' : ''}`} style={{borderTop: `6px solid ${accentColor}`}}>
           <h3 style={{marginBottom:'0.5rem'}}>{title}</h3>
           <span className="badge" style={{background:`${accentColor}20`, color:accentColor, padding:'0.2rem 1rem'}}>{subtitle}</span>
-          <p style={{margin:'1.5rem 0', opacity:0.8}}>
+          
+          <ul className="bullet-list">
             {isVenetian ? (
-              <>Includes Kenna James or Jeff Madsen (based on availability), professional dealer, cards, chips, and table for sit‑and‑go tournaments. Rules, strategy, psychology, and reading opponents covered.</>
+              <>
+                <li><i className="fa-regular fa-circle-check"></i> Kenna James or Jeff Madsen (based on availability)</li>
+                <li><i className="fa-regular fa-circle-check"></i> Professional dealer, cards, chips & table for sit‑n‑gos</li>
+                <li><i className="fa-regular fa-circle-check"></i> Full instruction: rules, strategy, psychology, tells</li>
+              </>
             ) : (
-              <>Includes Kenna James or Jeff Madsen (based on availability). Pro brings cards, chips, and table felt to transform your suite into a poker table. Full instruction: rules, strategy, psychology, tells.</>
+              <>
+                <li><i className="fa-regular fa-circle-check"></i> Kenna James or Jeff Madsen (based on availability)</li>
+                <li><i className="fa-regular fa-circle-check"></i> Pro brings cards, chips & felt – transforms suite into poker table</li>
+                <li><i className="fa-regular fa-circle-check"></i> Full instruction: rules, strategy, psychology, tells</li>
+              </>
             )}
-          </p>
+          </ul>
           
           <div className="price-total">${countedTotal.toLocaleString()}</div>
           
@@ -343,9 +398,14 @@
           )}
 
           {isVenetian && (
-            <p style={{marginTop:'1rem', fontSize:'0.9rem', opacity:0.7}}>
-              <i className="fa-regular fa-circle-question icon-gold"></i> Buy‑in per person: $50 / $100+ (we handle invoicing in advance)
-            </p>
+            <div style={{marginTop:'1.2rem', padding:'1rem', background:'rgba(255,255,255,0.03)', borderRadius:'16px'}}>
+              <p style={{marginBottom:'0.5rem', fontWeight:600}}>
+                <i className="fa-regular fa-credit-card icon-gold"></i> Buy‑in per person
+              </p>
+              <p style={{fontSize:'0.95rem', opacity:0.8}}>
+                We suggest $50–$100 per player per sit‑n‑go. Let us know your preferred amount and we’ll handle invoicing upfront — no cash needed at the table.
+              </p>
+            </div>
           )}
 
           <button className="btn btn-primary" style={{marginTop:'1.5rem', background:accentColor}} onClick={handleSelect}>
@@ -356,7 +416,6 @@
       );
     };
 
-    // Hand Analysis with programmer analogy
     const HandAnalysis = () => (
       <div className="glass-panel" style={{padding: 'clamp(1.8rem, 5vw, 3rem)'}}>
         <h3><i className="fa-solid fa-code icon-gold"></i> What is Hand Analysis?</h3>
@@ -398,7 +457,7 @@
                   <GoogleCloudLogo />
                   <span style={{fontWeight:500, opacity:0.8}}>Demand Gen · SMB</span>
                 </div>
-                <div className="group-badge"><i className="fa-solid fa-user-group icon-white"></i> 7 execs · Apr 21</div>
+                <div className="group-badge desktop-only"><i className="fa-solid fa-user-group icon-white"></i> 7 execs · Apr 21</div>
               </div>
             </div>
           </header>
@@ -408,15 +467,18 @@
             <section>
               <div className="container">
                 <RevealBlock>
-                  <div className="badge" style={{marginBottom:'1rem'}}>Global Google Cloud · SMB Demand Generation</div>
-                  <h1>Executive Poker<br/><span style={{background:'linear-gradient(145deg, #6ab0fe, #fff)', WebkitBackgroundClip:'text', color:'transparent'}}>Engagement.</span></h1>
+                  <div className="badge" style={{marginBottom:'0.5rem'}}>Global Google Cloud · SMB Demand Generation</div>
+                  <div className="mobile-badge-wrap">
+                    <span className="group-badge"><i className="fa-solid fa-user-group icon-white"></i> 7 execs · Apr 21</span>
+                  </div>
+                  <h1 style={{marginTop:'0.5rem'}}>Executive Poker<br/><span style={{background:'linear-gradient(145deg, #6ab0fe, #fff)', WebkitBackgroundClip:'text', color:'transparent'}}>Engagement.</span></h1>
                   <p style={{fontSize:'clamp(1.1rem, 3vw, 1.5rem)', maxWidth:'700px', opacity:0.9}}>
                     High‑engagement, strategy‑driven experience for teams building pipelines.
                   </p>
                   <div className="event-meta">
                     <span><i className="fa-solid fa-calendar-days icon-gold"></i> April 21</span>
                     <span><i className="fa-solid fa-clock icon-gold"></i> 3:30–6:00 PM</span>
-                    <span><i className="fa-solid fa-user-group icon-gold"></i> 7 Executives</span>
+                    <span className="desktop-only"><i className="fa-solid fa-user-group icon-gold"></i> 7 Executives</span>
                   </div>
                   <div style={{display:'flex', gap:'1rem', flexWrap:'wrap', marginTop:'2rem'}}>
                     <button className="btn btn-primary" onClick={() => scrollToSection('options')}>Explore options</button>
@@ -461,7 +523,7 @@
                   />
                 </div>
                 <p style={{marginTop:'1rem', opacity:0.7}}>
-                  <i className="fa-solid fa-building icon-gold"></i> If a private studio room is available, we will book you in there for the Venetian training.
+                  <i className="fa-solid fa-building icon-gold"></i> If the private studio room is available, we will book you in there for the Venetian training.
                 </p>
               </div>
             </section>
@@ -471,18 +533,32 @@
               <div className="container"><RevealBlock><HandAnalysis /></RevealBlock></div>
             </section>
 
-            {/* Flow */}
+            {/* Flow — with centered titles and subtext */}
             <section>
               <div className="container">
                 <RevealBlock>
-                  <h2 style={{marginBottom:'2rem'}}>Experience flow</h2>
+                  <h2 style={{marginBottom:'2rem', textAlign:'center'}}>Experience flow</h2>
                   <div className="flow-steps">
-                    {['Arrival & setup','Live instruction','Confidence Check','Peak engagement'].map((step,i)=>(
-                      <div key={i} className="step">
-                        <div style={{width:'44px',height:'44px',background:`var(--gc-${i%2===0?'blue':'red'})`,borderRadius:'30px',margin:'0 auto 1rem',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:'bold'}}>{i+1}</div>
-                        <h4>{step}</h4>
-                      </div>
-                    ))}
+                    <div className="step">
+                      <div style={{width:'48px',height:'48px',background:'var(--gc-blue)',borderRadius:'30px',margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:'bold'}}>1</div>
+                      <h4>Arrival & setup</h4>
+                      <p>Premium environment ready</p>
+                    </div>
+                    <div className="step">
+                      <div style={{width:'48px',height:'48px',background:'var(--gc-red)',borderRadius:'30px',margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:'bold'}}>2</div>
+                      <h4>Live instruction</h4>
+                      <p>90‑minutes of hand analysis with pro</p>
+                    </div>
+                    <div className="step">
+                      <div style={{width:'48px',height:'48px',background:'var(--gc-yellow)',borderRadius:'30px',margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:'bold',color:'#000'}}>3</div>
+                      <h4>Confidence Check</h4>
+                      <p>2 sit‑n‑gos (40‑45 mins each)</p>
+                    </div>
+                    <div className="step">
+                      <div style={{width:'48px',height:'48px',background:'var(--gc-green)',borderRadius:'30px',margin:'0 auto',display:'flex',alignItems:'center',justifyContent:'center',fontWeight:'bold'}}>4</div>
+                      <h4>Peak engagement</h4>
+                      <p>Energy, competition & connection</p>
+                    </div>
                   </div>
                 </RevealBlock>
               </div>
@@ -492,8 +568,8 @@
             <section>
               <div className="container">
                 <RevealBlock>
-                  <h2>World‑class instruction</h2>
-                  <p style={{marginBottom:'2rem'}}>We assign the optimal pro based on group dynamic & availability.</p>
+                  <h2 style={{textAlign:'center'}}>World‑class instruction</h2>
+                  <p style={{marginBottom:'2rem', textAlign:'center'}}>We assign the optimal pro based on group dynamic & availability.</p>
                   <div className="pro-grid">
                     {pros.map((p,i)=>(
                       <div key={i} className="pro-card">
@@ -514,7 +590,7 @@
             <section>
               <div className="container">
                 <RevealBlock>
-                  <h2 style={{marginBottom:'1.5rem'}}>Live experience snapshots</h2>
+                  <h2 style={{marginBottom:'1.5rem', textAlign:'center'}}>Live experience snapshots</h2>
                   <div className="gallery-grid">
                     <div className="gallery-item"><img src="https://storage.googleapis.com/msgsndr/E2BEbKIK8SvsJICq4vXY/media/69329adbe0f092644fb65b71.jpg" alt="event" /></div>
                     <div className="gallery-item"><img src="https://storage.googleapis.com/msgsndr/E2BEbKIK8SvsJICq4vXY/media/693b4f0f5b7f6413a3defc1e.jpg" alt="venetian" /></div>
